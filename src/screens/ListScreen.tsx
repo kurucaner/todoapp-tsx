@@ -6,10 +6,14 @@ type Props = {};
 type Task = {
   id: string;
   label: string;
+  isComplete: boolean;
 };
 
 const ListScreen: React.FC<Props> = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([
+    { label: "Test1", isComplete: false, id: nanoid() },
+    { label: "Test2", isComplete: false, id: nanoid() },
+  ]);
   const [newTaskLabel, setNewTaskLabel] = useState("");
 
   const handleNewTaskLabelChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -18,11 +22,30 @@ const ListScreen: React.FC<Props> = () => {
 
   const handleNewTaskKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && newTaskLabel.length > 0) {
-      setTasks((tasks) => [{ id: nanoid(), label: newTaskLabel }, ...tasks]);
+      setTasks((tasks) => [
+        ...tasks,
+        { id: nanoid(), label: newTaskLabel, isComplete: false },
+      ]);
       setNewTaskLabel("");
-      console.log(tasks);
     }
   };
+
+  const handleCompleteChange =
+    (handleTask: Task) => (e: ChangeEvent<HTMLInputElement>) => {
+      setTasks((tasks) =>
+        tasks.map((task) =>
+          task.id === handleTask.id
+            ? { ...task, isComplete: !task.isComplete }
+            : task
+        )
+      );
+    };
+
+  const handleClearClick = () => {
+    setTasks((tasks) => tasks.filter((task) => !task.isComplete));
+    console.log(setTasks);
+  };
+  console.log(tasks);
 
   return (
     <div>
@@ -31,11 +54,21 @@ const ListScreen: React.FC<Props> = () => {
         onChange={handleNewTaskLabelChange}
         onKeyPress={handleNewTaskKeyPress}
       />
-      <ul>
+      <div>
         {tasks.map((task) => (
-          <li key={task.id}>{task.label}</li>
+          <div key={task.id}>
+            <input
+              type="checkbox"
+              checked={task.isComplete}
+              onChange={handleCompleteChange(task)}
+            />
+            {task.label}
+          </div>
         ))}
-      </ul>
+      </div>
+      <div>
+        <button onClick={handleClearClick}>Clear Completed</button>
+      </div>
     </div>
   );
 };
