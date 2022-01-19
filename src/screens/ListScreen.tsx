@@ -74,7 +74,7 @@ const ListScreen: React.FC<Props> = () => {
                 <span
                   style={
                     task.isComplete
-                      ? { textDecorationLine: "line-through" }
+                      ? { textDecorationLine: "line-through", color: "gray" }
                       : { textDecorationLine: "none" }
                   }
                   className="todo-items"
@@ -82,7 +82,12 @@ const ListScreen: React.FC<Props> = () => {
                   {task.label.toUpperCase()}
                 </span>
               </div>
-              <span onClick={handleTaskDeleteClick(task)}>Delete</span>
+              <span
+                onClick={handleTaskDeleteClick(task)}
+                className="clear-button"
+              >
+                Delete
+              </span>
             </div>
           ))
         ) : (

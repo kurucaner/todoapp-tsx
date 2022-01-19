@@ -110,7 +110,7 @@ input[type="text"] {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0.5em 0em;
+  padding:0.5em 0em;
   background-color: #25273c;
   border-top: 1px solid #393a4c;
 }
