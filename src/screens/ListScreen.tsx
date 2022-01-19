@@ -71,13 +71,24 @@ const ListScreen: React.FC<Props> = () => {
                   onChange={handleCompleteChange(task)}
                   autoComplete="off"
                 />
-                <span className="todo-items">{task.label.toUpperCase()}</span>
+                <span
+                  style={
+                    task.isComplete
+                      ? { textDecorationLine: "line-through" }
+                      : { textDecorationLine: "none" }
+                  }
+                  className="todo-items"
+                >
+                  {task.label.toUpperCase()}
+                </span>
               </div>
               <span onClick={handleTaskDeleteClick(task)}>Delete</span>
             </div>
           ))
         ) : (
-          <span className="no-items">No items found: You haven't added any task. Add one!</span>
+          <span className="no-items">
+            No items found: You haven't added any task. Add one!
+          </span>
         )}
       </div>
       <div className="config-task">
