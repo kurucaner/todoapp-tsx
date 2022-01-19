@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import { nanoid } from "nanoid";
+import useLocalStorage from "../hooks/use-local-storage";
 
 type Props = {};
 
@@ -10,10 +11,7 @@ type Task = {
 };
 
 const ListScreen: React.FC<Props> = () => {
-  const [tasks, setTasks] = useState<Task[]>([
-    { label: "Test1", isComplete: false, id: nanoid() },
-    { label: "Test2", isComplete: false, id: nanoid() },
-  ]);
+  const [tasks, setTasks] = useLocalStorage<Task[]>("tasks", []);
   const [newTaskLabel, setNewTaskLabel] = useState("");
 
   const handleNewTaskLabelChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,6 +69,11 @@ const ListScreen: React.FC<Props> = () => {
         ))}
       </div>
       <div>
+        {tasks.length <= 0 ? (
+          <span>No tasks at all</span>
+        ) : (
+          <span>{tasks.length} Items left</span>
+        )}
         <button onClick={handleClearClick}>Clear Completed</button>
       </div>
     </div>
