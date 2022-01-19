@@ -2,7 +2,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-  color: #cacde8;
   box-sizing: border-box;
   font-size: 18px;
   transition: 1s ease;
@@ -11,7 +10,7 @@ body {
 
 img {
   width: 100%;
-  height: 250px;
+  height: 300px;
 }
 
 span {
@@ -31,12 +30,11 @@ span {
   width: 50%;
 }
 
-.app > h3 {
+.container > h3 {
   font-size: 1.5rem;
   margin: 0;
   padding: 0;
-  color: #cacde8;
-  text-align: center;
+  color: #ffffff;
 }
 
 .add-task {
@@ -110,7 +108,7 @@ input[type="text"] {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding:0.5em 0em;
+  padding: 0.5em 0em;
   background-color: #25273c;
   border-top: 1px solid #393a4c;
 }
