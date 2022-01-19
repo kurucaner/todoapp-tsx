@@ -111,6 +111,7 @@ input[type="text"] {
   padding: 0.5em 0em;
   background-color: #25273c;
   border-top: 1px solid #393a4c;
+  color: white;
 }
 
 .todo-items {
