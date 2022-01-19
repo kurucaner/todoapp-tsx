@@ -50,31 +50,49 @@ const ListScreen: React.FC<Props> = () => {
 
   return (
     <div>
-      <input
-        value={newTaskLabel}
-        onChange={handleNewTaskLabelChange}
-        onKeyPress={handleNewTaskKeyPress}
-      />
-      <div>
-        {tasks.map((task) => (
-          <div key={task.id}>
-            <input
-              type="checkbox"
-              checked={task.isComplete}
-              onChange={handleCompleteChange(task)}
-            />
-            {task.label}
-            <button onClick={handleTaskDeleteClick(task)}>Delete</button>
-          </div>
-        ))}
-      </div>
-      <div>
-        {tasks.length <= 0 ? (
-          <span>No tasks at all</span>
+      <form className="add-task">
+        <label htmlFor="task"></label>
+        <input
+          type="text"
+          value={newTaskLabel}
+          onChange={handleNewTaskLabelChange}
+          onKeyPress={handleNewTaskKeyPress}
+          placeholder="Create a new task..."
+        />
+      </form>
+      <div className="list-task">
+        {tasks.length > 0 ? (
+          tasks.map((task) => (
+            <div key={task.id} className="task-item">
+              <div className="checkbox-items">
+                <input
+                  type="checkbox"
+                  checked={task.isComplete}
+                  onChange={handleCompleteChange(task)}
+                  autoComplete="off"
+                />
+                <span className="todo-items">{task.label.toUpperCase()}</span>
+              </div>
+              <span onClick={handleTaskDeleteClick(task)}>Delete</span>
+            </div>
+          ))
         ) : (
-          <span>{tasks.length} Items left</span>
+          <span className="no-items">No items found: You haven't added any task. Add one!</span>
         )}
-        <button onClick={handleClearClick}>Clear Completed</button>
+      </div>
+      <div className="config-task">
+        <div className="counting-items">
+          <div className="footer-items">
+            {tasks.length <= 0 ? (
+              <span>No tasks at all</span>
+            ) : (
+              <span>{tasks.length} Items left</span>
+            )}
+          </div>
+          <span className="clear-button" onClick={handleClearClick}>
+            Clear Completed
+          </span>
+        </div>
       </div>
     </div>
   );
