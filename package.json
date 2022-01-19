@@ -56,11 +56,5 @@
   "keywords": [
     "ToDo",
     "TypeScript"
-  ],
-  "author": "Caner Kuru",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kurucaner/todoapp-tsx/issues"
-  },
-  "homepage": "https://github.com/kurucaner/todoapp-tsx#readme"
+  ]
 }
